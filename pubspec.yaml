@@ -1,5 +1,5 @@
 name: contacts_getter
-description: "📞 plugin for accessing and managing contacts, call logs, and messages on Android."
+description: "plugin for accessing and managing contacts, call logs, and messages on Android."
 version: 0.0.1
 
 homepage:  https://github.com/HassanAmeer/contacts_getter_plugin_flutter
