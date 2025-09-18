@@ -18,7 +18,7 @@ A Flutter plugin for accessing and managing contacts, call logs, and messages on
 
 
 ### Screenshots
- <img src="https://github.com/HassanAmeer/contact_getter_flutter_plugin/blob/main/screenshots/demo.png" style="width:50%">
+ <img src="https://github.com/HassanAmeer/contacts_getter_plugin_flutter/blob/main/screenshot/demo.png" style="width:50%">
  <hr>
 
 
@@ -29,17 +29,18 @@ A Flutter plugin for accessing and managing contacts, call logs, and messages on
 ```yaml
 dependencies:
   contacts_getter: any
+```
 
-run the command:
+- run the command:
 ```bash
     flutter pub get
 ```
 
-
+# 1. 
 ## 🔐 Permissions
 Request permissions in your app using permission_handler:
-
-### 1. request a permissions thats you need
+  - request a permissions thats you need
+  
 ```dart
   getPermissions() async {
     // Request permissions based on Android version
