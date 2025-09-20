@@ -1,27 +1,29 @@
 // lib/src/models/contact.dart
 
+import 'package:contacts_getter/const/nullString.dart';
+
 class Contact {
-  final String id;
-  final String displayName;
-  final String? phoneNumber;
-  final String? email;
-  final String? photoUri;
+  String id;
+  String displayName;
+  String phoneNumber;
+  String email;
+  String photoUri;
 
   Contact({
-    required this.id,
-    required this.displayName,
-    this.phoneNumber,
-    this.email,
-    this.photoUri,
+    this.id = "",
+    this.displayName = "",
+    this.phoneNumber = "",
+    this.email = "",
+    this.photoUri = "",
   });
 
   factory Contact.fromMap(Map<String, dynamic> map) {
     return Contact(
-      id: map['id'] ?? '',
-      displayName: map['displayName'] ?? '',
-      phoneNumber: map['phoneNumber'],
-      email: map['email'],
-      photoUri: map['photoUri'],
+      id: map['id'].toString().toNullString(),
+      displayName: map['displayName'].toString().toNullString(),
+      phoneNumber: map['phoneNumber'].toString().toNullString(),
+      email: map['email'].toString().toNullString(),
+      photoUri: map['photoUri'].toString().toNullString(),
     );
   }
 

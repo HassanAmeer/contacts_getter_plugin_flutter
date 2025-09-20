@@ -1,52 +1,54 @@
 // lib/src/models/call_log.dart
 
+import 'package:contacts_getter/const/nullString.dart';
+
 enum CallType { incoming, outgoing, missed, unknown }
 
 class CallLog {
-  final String id;
-  final String number;
-  final DateTime date;
-  final CallType type;
-  final int duration; // in seconds
+  String id;
+  String number;
+  String date;
+  String type;
+  String duration; // in seconds
 
   CallLog({
-    required this.id,
-    required this.number,
-    required this.date,
-    required this.type,
-    required this.duration,
+    this.id = "",
+    this.number = "",
+    this.date = "",
+    this.type = "",
+    this.duration = "",
   });
 
   factory CallLog.fromMap(Map<String, dynamic> map) {
     return CallLog(
-      id: map['id'] ?? '',
-      number: map['number'] ?? '',
-      date: DateTime.fromMillisecondsSinceEpoch(map['date'] ?? 0),
-      type: _parseCallType(map['type'] ?? 'unknown'),
-      duration: map['duration'] ?? 0,
+      id: map['id'].toString().toNullString(),
+      number: map['number'].toString().toNullString(),
+      date: map['date'] != null ? DateTime.fromMillisecondsSinceEpoch(map['date']).toString().toNullString() : "",
+      type: parseCallType(map['type'] ?? 'unknown').toString().toNullString(),
+      duration: map['duration'].toString().toNullString(),
     );
   }
 
-  static CallType _parseCallType(String type) {
+  static String parseCallType(String type) {
     switch (type) {
       case 'incoming':
-        return CallType.incoming;
+        return "incoming";
       case 'outgoing':
-        return CallType.outgoing;
+        return "outgoing";
       case 'missed':
-        return CallType.missed;
+        return "missed";
       default:
-        return CallType.unknown;
+        return "unknown";
     }
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'number': number,
-      'date': date.millisecondsSinceEpoch,
-      'type': type.toString().split('.').last,
-      'duration': duration,
+      'id': id.toString().toNullString(),
+      'number': number.toString().toNullString(),
+      'date': date.toString().toNullString(),
+      'type': type.toString().toNullString(),
+      'duration': duration.toString().toNullString(),
     };
   }
 }

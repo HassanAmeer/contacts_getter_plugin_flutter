@@ -25,7 +25,7 @@ class MethodChannelContactsGetter extends ContactsGetterPlatform {
     int? limit,
     bool orderByDesc = true,
   }) async {
-    debugPrint("👉🏻 getContacts called");
+    // debugPrint("👉🏻 getContacts called");
     final Map<String, dynamic> arguments = {
       'fromDate': fromDate?.millisecondsSinceEpoch,
       'limit': limit,
@@ -36,7 +36,7 @@ class MethodChannelContactsGetter extends ContactsGetterPlatform {
       'getContacts',
       arguments,
     );
-    debugPrint("👉🏻 getContacts result: $result");
+    // debugPrint("👉🏻 getContacts result: $result");
 
     if (result == null) return [];
 
@@ -54,7 +54,6 @@ class MethodChannelContactsGetter extends ContactsGetterPlatform {
     int? limit,
     bool orderByDesc = true,
   }) async {
-    debugPrint("👉🏻 getCallLogs called");
     final Map<String, dynamic> arguments = {
       'fromDate': fromDate?.millisecondsSinceEpoch,
       'limit': limit,
@@ -65,7 +64,6 @@ class MethodChannelContactsGetter extends ContactsGetterPlatform {
       'getCallLogs',
       arguments,
     );
-    debugPrint("👉🏻 getCallLogs result: $result");
 
     if (result == null) return [];
 
@@ -83,7 +81,6 @@ class MethodChannelContactsGetter extends ContactsGetterPlatform {
     int? limit,
     bool orderByDesc = true,
   }) async {
-    debugPrint("👉🏻 getMessages called");
     final Map<String, dynamic> arguments = {
       'fromDate': fromDate?.millisecondsSinceEpoch,
       'limit': limit,
@@ -94,7 +91,6 @@ class MethodChannelContactsGetter extends ContactsGetterPlatform {
       'getMessages',
       arguments,
     );
-    debugPrint("👉🏻 getMessages result: $result");
 
     if (result == null) return [];
 
@@ -108,9 +104,7 @@ class MethodChannelContactsGetter extends ContactsGetterPlatform {
 
   @override
   Future<OthersInfo> getOthersInfo() async {
-    debugPrint("👉🏻 getOthersInfo called");
     final result = await methodChannel.invokeMethod<Map>('getOthersInfo');
-    debugPrint("👉🏻 getOthersInfo result: $result");
 
     if (result == null) {
       throw Exception('Failed to get others info');

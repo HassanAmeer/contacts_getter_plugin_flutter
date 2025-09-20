@@ -1,34 +1,36 @@
 // lib/src/models/others_info.dart
 
+import 'package:contacts_getter/const/nullString.dart';
+
 enum NetworkType { wifi, mobile, ethernet, unknown }
 
 enum SimType { physical, esim, unknown }
 
 class OthersInfo {
-  final String deviceId; // Android ID
-  final String deviceName; // e.g., Build.MODEL
-  final String deviceImei;
-  final String model; // Device model
-  final NetworkType networkType;
-  final String? simNumber; // Phone number
-  final String simSerialNumber;
-  final String? carrierName; // Operator
-  final String? countryIso;
-  final bool isActive;
-  final SimType simType;
+  String deviceId; // Android ID
+  String deviceName; // e.g., Build.MODEL
+  String deviceImei;
+  String model; // Device model
+  String networkType;
+  String simNumber; // Phone number
+  String simSerialNumber;
+  String carrierName; // Operator
+  String countryIso;
+  bool isActive;
+  String simType;
 
   OthersInfo({
-    required this.deviceId,
-    required this.deviceName,
-    required this.deviceImei,
-    required this.model,
-    required this.networkType,
-    this.simNumber,
-    required this.simSerialNumber,
-    this.carrierName,
-    this.countryIso,
-    required this.isActive,
-    required this.simType,
+    this.deviceId = "",
+    this.deviceName = "",
+    this.deviceImei = "",
+    this.model = "",
+    this.networkType = "",
+    this.simNumber = "",
+    this.simSerialNumber = "",
+    this.carrierName = "",
+    this.countryIso = "",
+    this.isActive = true,
+    this.simType = "unknown",
   });
 
   factory OthersInfo.fromMap(Map<String, dynamic> map) {
@@ -37,53 +39,53 @@ class OthersInfo {
       deviceName: map['deviceName'] ?? '',
       deviceImei: map['deviceImei'] ?? '',
       model: map['model'] ?? '',
-      networkType: _parseNetworkType(map['networkType'] ?? 'unknown'),
+      networkType: parseNetworkType(map['networkType'] ?? 'unknown'),
       simNumber: map['simNumber'],
       simSerialNumber: map['simSerialNumber'] ?? '',
       carrierName: map['carrierName'],
       countryIso: map['countryIso'],
       isActive: map['isActive'] ?? false,
-      simType: _parseSimType(map['simType'] ?? 'unknown'),
+      simType: parseSimType(map['simType'] ?? 'unknown'),
     );
   }
 
-  static NetworkType _parseNetworkType(String type) {
+  static String parseNetworkType(String type) {
     switch (type) {
       case 'wifi':
-        return NetworkType.wifi;
+        return "wifi";
       case 'mobile':
-        return NetworkType.mobile;
+        return "mobile";
       case 'ethernet':
-        return NetworkType.ethernet;
+        return "ethernet";
       default:
-        return NetworkType.unknown;
+        return "unknown";
     }
   }
 
-  static SimType _parseSimType(String type) {
+  static String parseSimType(String type) {
     switch (type) {
       case 'physical':
-        return SimType.physical;
+        return "physical";
       case 'esim':
-        return SimType.esim;
+        return "esim";
       default:
-        return SimType.unknown;
+        return "unknown";
     }
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'deviceId': deviceId,
-      'deviceName': deviceName,
-      'deviceImei': deviceImei,
-      'model': model,
-      'networkType': networkType.toString().split('.').last,
-      'simNumber': simNumber,
-      'simSerialNumber': simSerialNumber,
-      'carrierName': carrierName,
-      'countryIso': countryIso,
-      'isActive': isActive,
-      'simType': simType.toString().split('.').last,
+      'deviceId': deviceId.toString(),
+      'deviceName': deviceName.toString(),
+      'deviceImei': deviceImei.toString(),
+      'model': model.toString(),
+      'networkType': networkType.toString(),
+      'simNumber': simNumber.toString(),
+      'simSerialNumber': simSerialNumber.toString(),
+      'carrierName': carrierName.toString(),
+      'countryIso': countryIso.toString(),
+      'isActive': isActive.toString().toNullString() == 'true',
+      'simType': simType.toString(),
     };
   }
 }
